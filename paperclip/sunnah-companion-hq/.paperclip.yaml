@@ -1,0 +1,56 @@
+schema: paperclip/v1
+agents:
+  lead:
+    budgetMonthlyCents: 1500
+    adapter:
+      type: claude_local
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+        GH_TOKEN:
+          kind: secret
+          requirement: optional
+  engineer:
+    budgetMonthlyCents: 2000
+    adapter:
+      type: claude_local
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+        GH_TOKEN:
+          kind: secret
+          requirement: optional
+  ops:
+    budgetMonthlyCents: 500
+    adapter:
+      type: claude_local
+    inputs:
+      env:
+        ANTHROPIC_API_KEY:
+          kind: secret
+          requirement: optional
+routines:
+  daily-health-check:
+    triggers:
+      - kind: schedule
+        cronExpression: "12 7 * * *"
+        timezone: Europe/London
+  weekly-triage:
+    triggers:
+      - kind: schedule
+        cronExpression: "47 7 * * 1"
+        timezone: Europe/London
+  weekly-dependency-check:
+    triggers:
+      - kind: schedule
+        cronExpression: "20 18 * * 3"
+        timezone: Europe/London
+  weekly-changelog-draft:
+    triggers:
+      - kind: schedule
+        cronExpression: "40 16 * * 5"
+        timezone: Europe/London
