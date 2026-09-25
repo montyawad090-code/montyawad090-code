@@ -35,21 +35,30 @@ Raise them only once a month of runs shows what the real spend is.
 
 ## How to use it
 
-Needs Node.js 24.11+ and an Anthropic API key, on my own laptop or a small always-on server.
+Needs **Node.js 24.11+**, an Anthropic API key, and the `claude` CLI (the agents run on
+Claude Code). Paperclip supports macOS, Linux and **WSL2**. On my Windows PC that means
+running everything inside WSL2 (`wsl --install` in an admin PowerShell), not in PowerShell.
+
+Always use `paperclipai@latest`: a cached older `npx paperclipai` may be missing commands
+such as `test-drive`.
 
 ```bash
 # 1. Try Paperclip in a throwaway sandbox first
-ANTHROPIC_API_KEY=... npx paperclipai test-drive
+ANTHROPIC_API_KEY=... npx paperclipai@latest test-drive
 
 # 2. Install for real
-npx --registry https://registry.npmjs.org paperclipai onboard --yes
+npx --registry https://registry.npmjs.org paperclipai@latest onboard --yes
 
 # 3. Preview, then import this company
-npx paperclipai company import ./paperclip/sunnah-companion-hq --target new \
-  --new-company-name "Sunnah Companion HQ" --dryRun
-npx paperclipai company import ./paperclip/sunnah-companion-hq --target new \
+npx paperclipai@latest company import ./paperclip/sunnah-companion-hq --target new \
+  --new-company-name "Sunnah Companion HQ" --dry-run
+npx paperclipai@latest company import ./paperclip/sunnah-companion-hq --target new \
   --new-company-name "Sunnah Companion HQ"
 ```
+
+Tested against Paperclip 2026.916.1: the import creates 3 agents (Engineer and Ops report to
+Lead, budgets applied), 1 project, 3 starter tasks and 4 active routines on Europe/London
+schedules. The only warning is a harmless note about the package schema version.
 
 Then in the Paperclip UI:
 
