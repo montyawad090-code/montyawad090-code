@@ -23,7 +23,7 @@ cid = company["id"]
 agents = {a.get("urlKey") or a["name"].lower().replace(" ", "-"): a["id"] for a in get(f"/api/companies/{cid}/agents")}
 agents.update({a["name"].lower().replace(" ", "-"): a["id"] for a in get(f"/api/companies/{cid}/agents")})
 projects = {p.get("urlKey") or p["name"].lower().replace(" ", "-"): p["id"] for p in get(f"/api/companies/{cid}/projects")}
-existing = {i["title"] for i in get(f"/api/companies/{cid}/issues")}
+existing = {i["title"] for i in get(f"/api/companies/{cid}/issues?limit=1000")}
 
 for path in sorted(glob.glob(os.path.join(pkg, "projects/*/tasks/*/TASK.md"))):
     text = open(path).read()
