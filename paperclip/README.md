@@ -33,6 +33,23 @@ sunnah-companion-hq/
 **Budgets** (monthly caps, in the currency Paperclip bills in): Lead 15, Engineer 20, Ops 5.
 Raise them only once a month of runs shows what the real spend is.
 
+## Quick install (Windows)
+
+1. PowerShell **as Administrator**:
+   ```powershell
+   irm https://raw.githubusercontent.com/montyawad090-code/montyawad090-code/main/paperclip/install-windows.ps1 | iex
+   ```
+   Installs WSL2 + Ubuntu and turns on mirrored networking. Restart if it asks.
+2. Open **Ubuntu** from the Start menu and paste:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/montyawad090-code/montyawad090-code/main/paperclip/install-wsl.sh | bash
+   ```
+   Installs Node 24 and the Claude Code CLI, starts Paperclip and imports this company.
+   Both scripts are safe to re-run.
+3. Open **http://localhost:3100** in your Windows browser.
+
+The manual steps below do the same thing by hand.
+
 ## How to use it
 
 Needs **Node.js 24.11+**, an Anthropic API key, and the `claude` CLI (the agents run on
