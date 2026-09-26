@@ -38,9 +38,11 @@ fi
 say "Node $(node --version)"
 
 # 2. Claude Code CLI (the agents run on it)
-if ! command -v claude >/dev/null 2>&1; then
+# npm 11+ skips postinstall scripts unless allowed, which leaves `claude` unusable.
+if ! claude --version >/dev/null 2>&1; then
   say "Installing Claude Code CLI"
-  npm install -g @anthropic-ai/claude-code
+  npm install -g --allow-scripts=@anthropic-ai/claude-code @anthropic-ai/claude-code
+  claude --version
 fi
 
 # 3. This repo (holds the company package)
