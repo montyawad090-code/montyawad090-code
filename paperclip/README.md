@@ -1,10 +1,44 @@
-# Paperclip setup: Sunnah Companion HQ
+# Paperclip setup: Sunnah Companion HQ + Career & Study HQ
 
 A ready-to-import [Paperclip](https://github.com/paperclipai/paperclip) company that runs
 maintenance and improvement work on sunnah-bot and the Sunnah Companion PWA, so less of it
 lands on me during term.
 
-## What's inside
+## Career & Study HQ
+
+A second company for placements, UWE studies and PPL flight training.
+
+**Org chart:** Me → Chief of Staff → Career Scout, Study Coach, Flight Coach.
+
+**Starter tasks:**
+- Airbus Wave 1 brief (closes 27 Sep)
+- Francis Crick placement brief (5 Oct)
+- Careers-fair prep (14 Oct)
+- Master CV
+- Module map
+- NMC expression-of-interest checklist (17 Oct)
+- PPL roadmap
+
+**Routines** (Europe/London):
+- Monday 08:17: opportunity scan
+- Saturday 10:24: ground-school quiz
+- Sunday 09:33: practice set
+- Sunday 17:52: weekly plan
+
+**House rules:** agents never send, submit or book anything, and never write assessed work
+(UWE academic integrity). Facts need official sources.
+
+## Adding new tasks to an existing company
+
+Re-importing a package duplicates its tasks. To pick up only new `TASK.md` files:
+
+```bash
+bash paperclip/add-new-tasks.sh sunnah-companion-hq "Sunnah Companion HQ"
+```
+
+`install-wsl.sh` does this automatically for companies that already exist.
+
+## What's inside (Sunnah Companion HQ)
 
 ```text
 sunnah-companion-hq/

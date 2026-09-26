@@ -9,7 +9,6 @@ set -euo pipefail
 REPO_URL="https://github.com/montyawad090-code/montyawad090-code.git"
 REPO_DIR="$HOME/montyawad090-code"
 BRANCH="${PAPERCLIP_SETUP_BRANCH:-main}"
-COMPANY_NAME="Sunnah Companion HQ"
 PORT=3100
 BIND="${PAPERCLIP_BIND:-loopback}"
 export NVM_DIR="$HOME/.nvm"
@@ -53,7 +52,6 @@ fi
 git -C "$REPO_DIR" fetch --quiet origin "$BRANCH"
 git -C "$REPO_DIR" checkout --quiet "$BRANCH"
 git -C "$REPO_DIR" pull --quiet --ff-only origin "$BRANCH" || true
-PACKAGE="$REPO_DIR/paperclip/sunnah-companion-hq"
 
 # 4. Start Paperclip (first run also onboards)
 health() { curl -fsS "http://127.0.0.1:$PORT/api/health" >/dev/null 2>&1; }
@@ -79,22 +77,30 @@ else
   health || { echo "Paperclip did not come up in time. See $LOG"; exit 1; }
 fi
 
-# 5. Import the company once
-if curl -fsS "http://127.0.0.1:$PORT/api/companies" | grep -q "\"$COMPANY_NAME\""; then
-  say "$COMPANY_NAME already imported"
-else
-  say "Importing $COMPANY_NAME"
-  npx -y paperclipai@latest company import "$PACKAGE" --target new \
-    --new-company-name "$COMPANY_NAME" --yes --api-base "http://127.0.0.1:$PORT"
-fi
+# 5. Import each company once; for companies that already exist, add only new tasks
+import_company() {
+  local folder="$1" name="$2"
+  if curl -fsS "http://127.0.0.1:$PORT/api/companies" | grep -q "\"$name\""; then
+    say "$name already imported; adding any new tasks"
+    PAPERCLIP_API="http://127.0.0.1:$PORT" bash "$REPO_DIR/paperclip/add-new-tasks.sh" "$folder" "$name"
+  else
+    say "Importing $name"
+    npx -y paperclipai@latest company import "$REPO_DIR/paperclip/$folder" --target new \
+      --new-company-name "$name" --yes --api-base "http://127.0.0.1:$PORT"
+  fi
+}
+import_company sunnah-companion-hq "Sunnah Companion HQ"
+import_company career-study-hq "Career & Study HQ"
 
 cat <<EOF
 
   Done. Open http://localhost:$PORT in your Windows browser.
 
-  Next, in the Paperclip UI:
-    1. Company settings -> Secrets: add ANTHROPIC_API_KEY (and GH_TOKEN for PRs)
-    2. Projects -> Sunnah Companion: attach the sunnah-bot and PWA repos
+  Two companies are set up: Sunnah Companion HQ and Career & Study HQ
+  (switch between them with the company menu, top left).
+
+  Agents use your Claude login (run \`claude\` once) or ANTHROPIC_API_KEY in
+  Company settings -> Secrets.
 
   To start Paperclip again later:  npx paperclipai@latest run
 EOF

@@ -1,0 +1,39 @@
+schema: paperclip/v1
+agents:
+  chief-of-staff:
+    budgetMonthlyCents: 1000
+    adapter:
+      type: claude_local
+  career-scout:
+    budgetMonthlyCents: 1500
+    adapter:
+      type: claude_local
+  study-coach:
+    budgetMonthlyCents: 1000
+    adapter:
+      type: claude_local
+  flight-coach:
+    budgetMonthlyCents: 500
+    adapter:
+      type: claude_local
+routines:
+  weekly-opportunity-scan:
+    triggers:
+      - kind: schedule
+        cronExpression: "17 8 * * 1"
+        timezone: Europe/London
+  weekly-practice-set:
+    triggers:
+      - kind: schedule
+        cronExpression: "33 9 * * 0"
+        timezone: Europe/London
+  weekly-ground-school-quiz:
+    triggers:
+      - kind: schedule
+        cronExpression: "24 10 * * 6"
+        timezone: Europe/London
+  sunday-weekly-plan:
+    triggers:
+      - kind: schedule
+        cronExpression: "52 17 * * 0"
+        timezone: Europe/London
