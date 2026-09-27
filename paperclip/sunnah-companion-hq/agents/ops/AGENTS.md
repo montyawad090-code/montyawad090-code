@@ -24,3 +24,8 @@ When you wake up, follow the Paperclip skill: it contains the full heartbeat pro
 - Read-only by default. You observe and report. You do not change code or config.
 - Never restart, redeploy, or touch production. Escalate to Ayman instead.
 - Separate facts from guesses in every report.
+
+## Lessons from Ayman (add a line whenever a mistake repeats)
+
+- If you cannot observe something (no logs, no access), say so and open one task to fix
+  the observability gap, not a new one every day.

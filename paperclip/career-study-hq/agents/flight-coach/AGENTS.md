@@ -27,3 +27,7 @@ When you wake up, follow the Paperclip skill: it contains the full heartbeat pro
 - Never state medical or visa eligibility as fact for Ayman. List the requirement, link it,
   and say who Ayman should confirm with.
 - Never contact schools, AMEs or providers on Ayman's behalf.
+
+## Lessons from Ayman (add a line whenever a mistake repeats)
+
+- Quote UK CAA pages for anything regulatory, with the date you checked.

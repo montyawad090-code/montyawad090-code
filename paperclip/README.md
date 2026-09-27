@@ -28,15 +28,38 @@ A second company for placements, UWE studies and PPL flight training.
 **House rules:** agents never send, submit or book anything, and never write assessed work
 (UWE academic integrity). Facts need official sources.
 
-## Adding new tasks to an existing company
+## Improving the agents
 
-Re-importing a package duplicates its tasks. To pick up only new `TASK.md` files:
+- **Skills** (reusable methods the agents follow):
+  - `application-brief`: one-page brief format per role.
+  - `placement-check`: verify, screen for clearance and visa flags, de-duplicate, then add to Notion Tasks with Source = `agent`.
+  - `teach-it`: example-first explanations.
+  - `pr-checklist`: the gate every Sunnah PR must pass.
+- **Lessons:** each `AGENTS.md` ends with `## Lessons from Ayman`. When an agent repeats a
+  mistake, add a line there (or edit the agent's instructions in the Paperclip UI).
+- **Monthly agent review** (Chief of Staff, 1st of the month): what each agent delivered, what to
+  cut, one instruction change per agent. Ayman decides.
+- **Connectors to add in Paperclip:**
+  - GitHub, so Engineer can open real PRs.
+  - Notion, so Career Scout can write to Tasks (without it, the agent puts a table in its comment).
+  - Gmail (optional, read-only).
+- **Context:** attach your CV to *Build a master CV*, and the module topic lists to *Set up the module map*.
+
+## Updating an existing install
+
+Paperclip will not re-import agents into an existing company, and re-importing tasks
+duplicates them. Re-run the installer, or run:
 
 ```bash
-bash paperclip/add-new-tasks.sh sunnah-companion-hq "Sunnah Companion HQ"
+python3 paperclip/update-company.py career-study-hq "Career & Study HQ"
+python3 paperclip/update-company.py sunnah-companion-hq "Sunnah Companion HQ"
 ```
 
-`install-wsl.sh` does this automatically for companies that already exist.
+It only ever **adds**:
+- missing skills, which it then attaches to the right agents;
+- a missing lessons section, appended to an agent's instructions (hand edits are kept);
+- missing routines;
+- missing one-off tasks.
 
 ## What's inside (Sunnah Companion HQ)
 

@@ -37,3 +37,8 @@ routines:
       - kind: schedule
         cronExpression: "52 17 * * 0"
         timezone: Europe/London
+  monthly-agent-review:
+    triggers:
+      - kind: schedule
+        cronExpression: "41 18 1 * *"
+        timezone: Europe/London

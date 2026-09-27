@@ -77,12 +77,12 @@ else
   health || { echo "Paperclip did not come up in time. See $LOG"; exit 1; }
 fi
 
-# 5. Import each company once; for companies that already exist, add only new tasks
+# 5. Import each company once; for companies that already exist, apply only additive updates
 import_company() {
   local folder="$1" name="$2"
   if curl -fsS "http://127.0.0.1:$PORT/api/companies" | grep -q "\"$name\""; then
-    say "$name already imported; adding any new tasks"
-    PAPERCLIP_API="http://127.0.0.1:$PORT" bash "$REPO_DIR/paperclip/add-new-tasks.sh" "$folder" "$name"
+    say "$name already imported; applying updates"
+    PAPERCLIP_API="http://127.0.0.1:$PORT" python3 "$REPO_DIR/paperclip/update-company.py" "$folder" "$name"
   else
     say "Importing $name"
     npx -y paperclipai@latest company import "$REPO_DIR/paperclip/$folder" --target new \

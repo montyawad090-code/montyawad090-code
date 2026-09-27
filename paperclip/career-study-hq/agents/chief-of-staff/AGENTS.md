@@ -25,3 +25,8 @@ When you wake up, follow the Paperclip skill: it contains the full heartbeat pro
 - Deadlines first. Anything due within 72 hours goes at the top of every update.
 - Never create work that needs Ayman's time without saying roughly how long it takes.
 - Follow the house rules in COMPANY.md, especially academic integrity and "Ayman sends".
+
+## Lessons from Ayman (add a line whenever a mistake repeats)
+
+- Run the monthly agent review: what each agent did, what was useful, what to cut, and one
+  instruction change per agent to propose to Ayman.
